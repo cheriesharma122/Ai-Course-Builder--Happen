@@ -14,7 +14,7 @@ async function loadRoadmap() {
 
   try {
     const response = await fetch(
-      "http://127.0.0.1:8000/generate-roadmap",
+      "https://ai-course-builder-happen.onrender.com/generate-roadmap",
       {
         method: "POST",
 
@@ -147,7 +147,7 @@ function showError(message) {
       <p>${escapeHtml(message)}</p>
 
       <p>
-        Make sure your FastAPI terminal is running.
+        Please try again in a few moments. The AI service may be temporarily busy.
       </p>
 
       <button
