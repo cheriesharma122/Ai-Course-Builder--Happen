@@ -1,57 +1,185 @@
-let data =
-JSON.parse(
-sessionStorage.getItem("learningData")
-);
+const container = document.getElementById("roadmap");
+
+async function loadRoadmap() {
+  const savedData = sessionStorage.getItem("learningData");
+
+  if (!savedData) {
+    showError(
+      "No learning details were found. Please create a new roadmap."
+    );
+    return;
+  }
+
+  const data = JSON.parse(savedData);
+
+  try {
+    const response = await fetch(
+      "http://127.0.0.1:8000/generate-roadmap",
+      {
+        method: "POST",
+
+        headers: {
+          "Content-Type": "application/json"
+        },
+
+        body: JSON.stringify(data)
+      }
+    );
+
+    const result = await response.json();
+
+    if (!response.ok) {
+      throw new Error(
+        result.detail || "Roadmap generation failed."
+      );
+    }
+
+    displayRoadmap(result);
+
+  } catch (error) {
+    console.error(error);
+
+    showError(error.message);
+  }
+}
 
 
+function displayRoadmap(result) {
+  container.innerHTML = `
+    <section class="roadmap-summary">
 
-document.getElementById("roadmap").innerHTML=`
+      <div class="summary-title">
+        <p class="small-heading">
+          Personalized learning roadmap
+        </p>
 
-<h2>
-${data.skill} Roadmap
-</h2>
+        <h2>
+          ${escapeHtml(result.skill)}
+        </h2>
+      </div>
+
+      <div class="summary-grid">
+
+        <div class="summary-card">
+          <span>Current Level</span>
+          <strong>${escapeHtml(result.level)}</strong>
+        </div>
+
+        <div class="summary-card">
+          <span>Career Goal</span>
+          <strong>${escapeHtml(result.goal)}</strong>
+        </div>
+
+        <div class="summary-card">
+          <span>Daily Study Time</span>
+          <strong>${escapeHtml(result.hours)}</strong>
+        </div>
+
+        <div class="summary-card">
+          <span>Language</span>
+          <strong>${escapeHtml(result.language)}</strong>
+        </div>
+
+      </div>
+
+    </section>
+
+    <section class="ai-roadmap-card">
+
+      <div class="ai-label">
+        AI-generated learning plan
+      </div>
+
+      <div class="roadmap-content">
+        ${formatRoadmap(result.roadmap)}
+      </div>
+
+    </section>
+  `;
+}
 
 
-<h3>
-Level 1: Fundamentals
-</h3>
+function formatRoadmap(text) {
+  let formatted = escapeHtml(text);
 
-<p>
-Learn basics and concepts.
-</p>
+  formatted = formatted
+    .replace(
+      /\*\*(.*?)\*\*/g,
+      "<h2 class='roadmap-section-title'>$1</h2>"
+    )
+    .replace(
+      /^### (.*)$/gm,
+      "<h3 class='roadmap-subtitle'>$1</h3>"
+    )
+    .replace(
+      /^## (.*)$/gm,
+      "<h2 class='roadmap-section-title'>$1</h2>"
+    )
+    .replace(
+      /^# (.*)$/gm,
+      "<h1 class='roadmap-main-title'>$1</h1>"
+    )
+    .replace(
+      /^- \[ \] (.*)$/gm,
+      "<div class='checklist-item'>☐ $1</div>"
+    )
+    .replace(
+      /^- (.*)$/gm,
+      "<div class='roadmap-list-item'>• $1</div>"
+    )
+    .replace(
+      /^\d+\. (.*)$/gm,
+      "<div class='roadmap-list-item numbered-item'>$1</div>"
+    )
+    .replace(/\n\n/g, "</p><p>")
+    .replace(/\n/g, "<br>");
+
+  return `<p>${formatted}</p>`;
+}
 
 
-<h4>🎥 Videos</h4>
+function showError(message) {
+  container.innerHTML = `
+    <section class="error-card">
 
-<a href="#">
-YouTube Course Link
-</a>
+      <h2>Roadmap could not be generated</h2>
+
+      <p>${escapeHtml(message)}</p>
+
+      <p>
+        Make sure your FastAPI terminal is running.
+      </p>
+
+      <button
+        class="primary-button"
+        onclick="createNewRoadmap()"
+      >
+        Try Again
+      </button>
+
+    </section>
+  `;
+}
 
 
-<h4>📚 Documentation</h4>
-
-<a href="#">
-Official Documentation
-</a>
+function createNewRoadmap() {
+  window.location.href = "profile.html";
+}
 
 
-
-<h3>
-Level 2: Practice
-</h3>
-
-
-<p>
-Build mini projects.
-</p>
+function downloadRoadmap() {
+  window.print();
+}
 
 
-<h4>
-Task:
-</h4>
+function escapeHtml(value) {
+  return String(value)
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
+}
 
-<p>
-Create your first project.
-</p>
 
-`;
+loadRoadmap();

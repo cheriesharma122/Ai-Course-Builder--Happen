@@ -53,3 +53,300 @@ h1{
 color:#818cf8;
 
 }
+/* Modern AI Roadmap Page */
+
+* {
+  box-sizing: border-box;
+}
+
+body.roadmap-page {
+  margin: 0;
+  min-height: 100vh;
+  background: #f4f7fb;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #172033;
+}
+
+.roadmap-header {
+  width: 100%;
+  padding: 22px 7%;
+  background: white;
+  border-bottom: 1px solid #e5e9f2;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.roadmap-header h1 {
+  margin: 0;
+  color: #4f46e5;
+  font-size: 28px;
+}
+
+.roadmap-header p {
+  margin: 6px 0 0;
+  color: #697386;
+}
+
+.header-buttons {
+  display: flex;
+  gap: 12px;
+}
+
+.primary-button,
+.secondary-button {
+  border: none;
+  border-radius: 10px;
+  padding: 12px 18px;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.primary-button {
+  background: #4f46e5;
+  color: white;
+}
+
+.primary-button:hover {
+  background: #4338ca;
+}
+
+.secondary-button {
+  background: #eef0ff;
+  color: #4338ca;
+}
+
+.secondary-button:hover {
+  background: #dfe2ff;
+}
+
+.roadmap-wrapper {
+  width: min(1100px, 92%);
+  margin: 35px auto 70px;
+}
+
+.roadmap-container {
+  width: 100%;
+}
+
+.loading-box,
+.error-card {
+  background: white;
+  padding: 50px 30px;
+  border-radius: 18px;
+  text-align: center;
+  box-shadow: 0 10px 35px rgba(45, 55, 90, 0.08);
+}
+
+.spinner {
+  width: 52px;
+  height: 52px;
+  margin: 0 auto 22px;
+
+  border: 5px solid #e4e7ff;
+  border-top-color: #4f46e5;
+  border-radius: 50%;
+
+  animation: spin 0.9s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loading-box h2 {
+  margin-bottom: 10px;
+}
+
+.loading-box p {
+  color: #697386;
+  line-height: 1.6;
+}
+
+.roadmap-summary {
+  background: linear-gradient(
+    135deg,
+    #4f46e5,
+    #6d5dfc
+  );
+
+  border-radius: 20px;
+  padding: 30px;
+  color: white;
+  margin-bottom: 25px;
+  box-shadow: 0 12px 35px rgba(79, 70, 229, 0.22);
+}
+
+.small-heading {
+  margin: 0 0 8px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 13px;
+  opacity: 0.82;
+}
+
+.summary-title h2 {
+  margin: 0 0 25px;
+  font-size: 34px;
+}
+
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 15px;
+}
+
+.summary-card {
+  padding: 17px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.14);
+  backdrop-filter: blur(8px);
+}
+
+.summary-card span {
+  display: block;
+  margin-bottom: 7px;
+  font-size: 13px;
+  opacity: 0.8;
+}
+
+.summary-card strong {
+  font-size: 17px;
+}
+
+.ai-roadmap-card {
+  background: white;
+  padding: 35px;
+  border-radius: 20px;
+  box-shadow: 0 10px 35px rgba(45, 55, 90, 0.08);
+}
+
+.ai-label {
+  display: inline-block;
+  margin-bottom: 25px;
+  padding: 8px 13px;
+
+  background: #eef0ff;
+  color: #4f46e5;
+
+  border-radius: 30px;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+.roadmap-content {
+  line-height: 1.8;
+  font-size: 16px;
+  color: #354052;
+}
+
+.roadmap-section-title {
+  margin-top: 34px;
+  margin-bottom: 14px;
+  padding-bottom: 10px;
+
+  color: #3228a8;
+  font-size: 23px;
+  border-bottom: 2px solid #eef0ff;
+}
+
+.roadmap-subtitle {
+  color: #172033;
+  margin-top: 25px;
+}
+
+.roadmap-list-item {
+  margin: 8px 0;
+  padding-left: 8px;
+}
+
+.numbered-item {
+  padding: 12px 15px;
+  background: #f7f8fc;
+  border-radius: 9px;
+}
+
+.checklist-item {
+  margin: 9px 0;
+  padding: 12px 15px;
+
+  background: #f0fdf4;
+  border-left: 4px solid #22c55e;
+  border-radius: 8px;
+}
+
+.error-card h2 {
+  color: #dc2626;
+}
+
+.error-card p {
+  color: #697386;
+}
+
+@media (max-width: 800px) {
+  .roadmap-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .summary-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .ai-roadmap-card {
+    padding: 23px;
+  }
+}
+
+@media (max-width: 500px) {
+  .summary-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .header-buttons {
+    width: 100%;
+  }
+
+  .primary-button,
+  .secondary-button {
+    flex: 1;
+  }
+}
+
+/* PDF and printing */
+
+@media print {
+  .roadmap-header {
+    display: none;
+  }
+
+  body.roadmap-page {
+    background: white;
+  }
+
+  .roadmap-wrapper {
+    width: 100%;
+    margin: 0;
+  }
+
+  .roadmap-summary,
+  .ai-roadmap-card {
+    box-shadow: none;
+  }
+
+  .roadmap-summary {
+    color: black;
+    background: white;
+    border: 1px solid #dddddd;
+  }
+
+  .summary-card {
+    border: 1px solid #dddddd;
+    background: white;
+  }
+}
