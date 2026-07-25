@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Settings · AI SkillPath</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Settings</h1>
+    <p>Configure how AI SkillPath connects and prefills your learning form.</p>
+
+    <label class="settings-label" for="apiBaseUrl">API base URL</label>
+    <input
+      id="apiBaseUrl"
+      type="url"
+      placeholder="https://ai-course-builder-happen.onrender.com"
+    >
+
+    <label class="settings-label" for="defaultLanguage">Default language</label>
+    <input
+      id="defaultLanguage"
+      placeholder="English"
+    >
+
+    <label class="settings-label" for="defaultStudyTime">Default daily study time</label>
+    <input
+      id="defaultStudyTime"
+      placeholder="1 hour"
+    >
+
+    <button type="button" id="saveSettings">Save settings</button>
+    <p id="settingsMessage" class="settings-message" hidden></p>
+
+    <p class="settings-nav">
+      <a href="index.html">Home</a>
+      ·
+      <a href="profile.html">Create roadmap</a>
+    </p>
+  </div>
+
+  <script src="settings.js"></script>
+</body>
+</html>

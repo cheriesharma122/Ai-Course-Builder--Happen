@@ -19,3 +19,15 @@ function generateRoadmap() {
 
   window.location.href = "roadmap.html";
 }
+
+(function applyDefaultSettings() {
+  try {
+    const raw = localStorage.getItem("skillpathSettings");
+    if (!raw) return;
+    const { defaultLanguage, defaultStudyTime } = JSON.parse(raw);
+    if (defaultLanguage) document.getElementById("language").value = defaultLanguage;
+    if (defaultStudyTime) document.getElementById("time").value = defaultStudyTime;
+  } catch {
+    /* ignore */
+  }
+})();

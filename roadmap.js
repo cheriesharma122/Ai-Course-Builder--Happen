@@ -1,5 +1,18 @@
 const container = document.getElementById("roadmap");
 
+function getRoadmapApiUrl() {
+  const fallback = "https://ai-course-builder-happen.onrender.com";
+  try {
+    const raw = localStorage.getItem("skillpathSettings");
+    if (!raw) return `${fallback}/generate-roadmap`;
+    const { apiBaseUrl } = JSON.parse(raw);
+    const base = (apiBaseUrl || fallback).replace(/\/+$/, "");
+    return `${base}/generate-roadmap`;
+  } catch {
+    return `${fallback}/generate-roadmap`;
+  }
+}
+
 async function loadRoadmap() {
   const savedData = sessionStorage.getItem("learningData");
 
@@ -13,18 +26,15 @@ async function loadRoadmap() {
   const data = JSON.parse(savedData);
 
   try {
-    const response = await fetch(
-      "https://ai-course-builder-happen.onrender.com/generate-roadmap",
-      {
-        method: "POST",
+    const response = await fetch(getRoadmapApiUrl(), {
+      method: "POST",
 
-        headers: {
-          "Content-Type": "application/json"
-        },
+      headers: {
+        "Content-Type": "application/json"
+      },
 
-        body: JSON.stringify(data)
-      }
-    );
+      body: JSON.stringify(data)
+    });
 
     const result = await response.json();
 

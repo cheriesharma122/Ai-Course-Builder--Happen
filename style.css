@@ -53,6 +53,25 @@ h1{
 color:#818cf8;
 
 }
+
+.settings-label {
+  display: block;
+  width: 90%;
+  margin: 16px auto 4px;
+  text-align: left;
+  font-size: 0.9rem;
+  color: #cbd5e1;
+}
+
+.settings-message {
+  margin-top: 12px;
+  color: #86efac;
+}
+
+.settings-nav {
+  margin-top: 24px;
+  font-size: 0.95rem;
+}
 /* Modern AI Roadmap Page */
 
 * {
@@ -121,6 +140,13 @@ body.roadmap-page {
 
 .secondary-button:hover {
   background: #dfe2ff;
+}
+
+.header-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
 }
 
 .roadmap-wrapper {
