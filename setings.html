@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Settings | AI Course Builder</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <main class="container">
+    <div class="page-header">
+      <div>
+        <p class="eyebrow">AI Course Builder</p>
+        <h1>Settings</h1>
+        <p class="subtitle">
+          Configure your roadmap preferences and backend connection.
+        </p>
+      </div>
+
+      <a href="index.html" class="secondary-button">Back to Home</a>
+    </div>
+
+    <section class="settings-card">
+      <form id="settingsForm" novalidate>
+        <div class="form-group">
+          <label for="apiUrl">Backend API URL</label>
+          <input
+            type="url"
+            id="apiUrl"
+            name="apiUrl"
+            placeholder="https://your-backend.onrender.com"
+            required
+          />
+          <small class="error-message" id="apiUrlError"></small>
+        </div>
+
+        <div class="form-group">
+          <label for="learningGoal">Learning Goal</label>
+          <input
+            type="text"
+            id="learningGoal"
+            name="learningGoal"
+            placeholder="Example: Learn full-stack web development"
+            required
+          />
+          <small class="error-message" id="learningGoalError"></small>
+        </div>
+
+        <div class="form-group">
+          <label for="skillLevel">Skill Level</label>
+          <select id="skillLevel" name="skillLevel" required>
+            <option value="">Select your skill level</option>
+            <option value="beginner">Beginner</option>
+            <option value="intermediate">Intermediate</option>
+            <option value="advanced">Advanced</option>
+          </select>
+          <small class="error-message" id="skillLevelError"></small>
+        </div>
+
+        <div class="form-group">
+          <label for="weeklyHours">Weekly Study Hours</label>
+          <input
+            type="number"
+            id="weeklyHours"
+            name="weeklyHours"
+            min="1"
+            max="80"
+            placeholder="Example: 8"
+            required
+          />
+          <small class="error-message" id="weeklyHoursError"></small>
+        </div>
+
+        <div class="form-group">
+          <label for="duration">Roadmap Duration</label>
+          <select id="duration" name="duration" required>
+            <option value="">Select roadmap duration</option>
+            <option value="4">4 weeks</option>
+            <option value="8">8 weeks</option>
+            <option value="12">12 weeks</option>
+            <option value="16">16 weeks</option>
+            <option value="24">24 weeks</option>
+          </select>
+          <small class="error-message" id="durationError"></small>
+        </div>
+
+        <button type="submit" class="primary-button">
+          Save Settings
+        </button>
+
+        <p
+          id="successMessage"
+          class="success-message"
+          role="status"
+          aria-live="polite"
+        ></p>
+      </form>
+    </section>
+  </main>
+
+  <script src="settings.js"></script>
+</body>
+</html>

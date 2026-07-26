@@ -13,8 +13,15 @@ async function loadRoadmap() {
   const data = JSON.parse(savedData);
 
   try {
+    const savedSettings =
+      JSON.parse(localStorage.getItem("settings")) || {};
+  
+    const apiUrl =
+      savedSettings.apiUrl ||
+      "https://ai-course-builder-happen.onrender.com";
+  
     const response = await fetch(
-      "https://ai-course-builder-happen.onrender.com/generate-roadmap",
+      `${apiUrl.replace(/\/$/, "")}/generate-roadmap`,
       {
         method: "POST",
 
