@@ -27,3 +27,12 @@ AI Roadmap Generator is a full-stack web application that generates personalized
 - Use AI to assist with debugging and code generation.
 - Review and verify AI-generated code before committing.
 - Keep the README and documentation updated as the project evolves.
+
+## Additional Project Rules
+
+- Prefer reusable JavaScript functions.
+- Store user preferences using localStorage.
+- Reuse existing CSS before creating new styles.
+- Validate all user inputs before saving.
+- Keep the UI simple and accessible.
+- Follow Conventional Commits for all changes.
